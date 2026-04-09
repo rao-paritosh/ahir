@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guess It</title>
+<style>
+body{background:#050505;color:white;display:flex;justify-content:center;align-items:center;height:100vh;font-family:Arial}
+.box{padding:25px;border-radius:20px;background:rgba(255,255,255,0.08);text-align:center}
+input{padding:10px;border-radius:10px;border:none}
+button{margin-top:10px;padding:10px 20px;border:none;border-radius:10px}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Number Guess</h2>
+
+<input id="g"><br>
+<button onclick="check()">Guess</button>
+
+<p id="r"></p>
+
+<button onclick="reset()">⟳ Reset</button>
+</div>
+
+<script>
+let n=Math.floor(Math.random()*10)+1;
+
+function check(){
+let g=document.getElementById("g").value;
+let r=document.getElementById("r");
+
+if(g==n) r.innerText="Correct!";
+else r.innerText="Wrong "+n;
+
+n=Math.floor(Math.random()*10)+1;
+}
+
+function reset(){
+n=Math.floor(Math.random()*10)+1;
+r.innerText="";
+}
+</script>
+
+</body>
+</html>
