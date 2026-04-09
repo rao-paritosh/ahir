@@ -2,24 +2,132 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whack Game</title>
+
 <style>
-body{background:#050505;color:white;display:flex;justify-content:center;align-items:center;height:100vh}
-.box{padding:30px;background:#111;border-radius:20px;text-align:center}
+body{
+  margin:0;
+  background:#050505;
+  color:white;
+  font-family:Arial;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.box{
+  text-align:center;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,90px);
+  gap:10px;
+  margin-top:15px;
+}
+
+.hole{
+  width:90px;
+  height:90px;
+  background:#111;
+  border-radius:15px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:30px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.hole.active{
+  background:red;
+  transform:scale(1.1);
+}
+
+button{
+  margin-top:10px;
+  padding:8px 15px;
+  border:none;
+  border-radius:10px;
+}
 </style>
 </head>
 
 <body>
 
-<div class="box" onclick="c()">
-Click Fast
-<p id="n">0</p>
-<button onclick="reset()">⟳</button>
+<div class="box">
+
+<h2>Whack Game 🔥</h2>
+<p>Score: <span id="score">0</span></p>
+<p>Time: <span id="time">15</span></p>
+
+<div class="grid" id="grid"></div>
+
+<button onclick="start()">Start</button>
+<button onclick="reset()">⟳ Reset</button>
+
 </div>
 
 <script>
-let x=0;
-function c(){x++;n.innerText=x;}
-function reset(){x=0;n.innerText=0;}
+
+let score=0;
+let time=15;
+let current=null;
+let interval, timer;
+
+let grid=document.getElementById("grid");
+
+// create holes
+for(let i=0;i<9;i++){
+  let d=document.createElement("div");
+  d.className="hole";
+
+  d.onclick=()=>{
+    if(d.classList.contains("active")){
+      score++;
+      document.getElementById("score").innerText=score;
+      d.classList.remove("active");
+    }
+  };
+
+  grid.appendChild(d);
+}
+
+function start(){
+
+  score=0;
+  time=15;
+  document.getElementById("score").innerText=score;
+  document.getElementById("time").innerText=time;
+
+  let holes=document.querySelectorAll(".hole");
+
+  interval=setInterval(()=>{
+    holes.forEach(h=>h.classList.remove("active"));
+
+    let r=Math.floor(Math.random()*9);
+    holes[r].classList.add("active");
+
+  },700);
+
+  timer=setInterval(()=>{
+    time--;
+    document.getElementById("time").innerText=time;
+
+    if(time==0){
+      clearInterval(interval);
+      clearInterval(timer);
+      alert("Game Over! Score: "+score);
+    }
+
+  },1000);
+}
+
+function reset(){
+  location.reload();
+}
+
 </script>
 
 </body>
