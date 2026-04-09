@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{background:#050505;color:white;display:flex;justify-content:center;align-items:center;height:100vh}
+.grid{display:grid;grid-template-columns:repeat(3,80px)}
+.cell{width:80px;height:80px;background:#111;display:flex;justify-content:center;align-items:center;font-size:30px}
+</style>
+</head>
+
+<body>
+
+<div>
+<div class="grid" id="g"></div>
+<p id="turn">Turn: X</p>
+<button onclick="location.reload()">⟳</button>
+</div>
+
+<script>
+let t="X";
+
+for(let i=0;i<9;i++){
+let d=document.createElement("div");
+d.className="cell";
+
+d.onclick=()=>{
+if(d.innerText)return;
+d.innerText=t;
+t=t=="X"?"O":"X";
+turn.innerText="Turn: "+t;
+};
+
+g.appendChild(d);
+}
+</script>
+
+</body>
+</html>
