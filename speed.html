@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{background:#050505;color:white;display:flex;justify-content:center;align-items:center;height:100vh}
+.box{padding:30px;background:#111;border-radius:20px;text-align:center}
+</style>
+</head>
+
+<body>
+
+<div class="box" onclick="c()">
+Click Fast
+<p id="n">0</p>
+<button onclick="reset()">⟳</button>
+</div>
+
+<script>
+let x=0;
+function c(){x++;n.innerText=x;}
+function reset(){x=0;n.innerText=0;}
+</script>
+
+</body>
+</html>
