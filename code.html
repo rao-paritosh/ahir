@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="navbar">
+<span onclick="toggleMenu()">☰</span>
+<h3>💻 Code</h3>
+</div>
+
+<div id="sidebar" class="sidebar">
+<a href="home.html">Home</a>
+<a href="games.html">Games</a>
+<a href="code.html">Code</a>
+<a href="about.html">About</a>
+</div>
+
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+<div class="content">
+
+<div class="card">
+
+<h3>🎯 Number Guess (Python)</h3>
+
+<pre id="codeBlock" style="text-align:left;">
+import random
+
+number = random.randint(1,10)
+
+guess = int(input("Guess: "))
+
+if guess == number:
+    print("Correct")
+else:
+    print("Wrong", number)
+</pre>
+
+<button onclick="copyCode(this)">Copy</button>
+
+</div>
+
+</div>
+
+<div class="bottom-nav">
+<a href="home.html">Home</a>
+<a href="games.html">Games</a>
+<a href="code.html">Code</a>
+<a href="about.html">About</a>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+function copyCode(btn){
+let code=document.getElementById("codeBlock").innerText;
+navigator.clipboard.writeText(code);
+
+btn.innerText="✔";
+
+setTimeout(()=>{
+btn.innerText="Copy";
+},1500);
+}
+</script>
+
+</body>
+</html>
