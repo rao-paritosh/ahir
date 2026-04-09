@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dice</title>
+<style>
+body{background:#050505;color:white;display:flex;justify-content:center;align-items:center;height:100vh}
+.box{text-align:center}
+.dice{width:100px;height:100px;background:white;border-radius:15px;display:grid;grid-template-columns:repeat(3,1fr);padding:10px}
+.dot{width:15px;height:15px;background:black;border-radius:50%;visibility:hidden;margin:auto}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Dice</h2>
+
+<div class="dice" id="dice">
+<div class="dot"></div><div class="dot"></div><div class="dot"></div>
+<div class="dot"></div><div class="dot"></div><div class="dot"></div>
+<div class="dot"></div><div class="dot"></div><div class="dot"></div>
+</div>
+
+<button onclick="roll()">Roll</button>
+<button onclick="reset()">⟳</button>
+
+</div>
+
+<script>
+function roll(){
+let d=document.querySelectorAll(".dot");
+d.forEach(x=>x.style.visibility="hidden");
+
+let n=Math.floor(Math.random()*6)+1;
+let m={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
+m[n].forEach(i=>d[i].style.visibility="visible");
+}
+function reset(){document.querySelectorAll(".dot").forEach(x=>x.style.visibility="hidden");}
+</script>
+
+</body>
+</html>
