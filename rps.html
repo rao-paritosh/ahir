@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RPS</title>
+<style>
+body{background:#050505;color:white;display:flex;justify-content:center;align-items:center;height:100vh}
+.box{text-align:center}
+button{margin:10px;border-radius:50%;width:80px;height:80px}
+img{width:50px}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>RPS</h2>
+
+<button onclick="play('rock')"><img src="../images/rock.png"></button>
+<button onclick="play('paper')"><img src="../images/paper.png"></button>
+<button onclick="play('scissors')"><img src="../images/scissors.png"></button>
+
+<p id="r"></p>
+
+<button onclick="reset()">⟳ Reset</button>
+</div>
+
+<script>
+function play(u){
+let c=["rock","paper","scissors"][Math.random()*3|0];
+r.innerText=(u==c)?"Draw":(u=="rock"&&c=="scissors"||u=="paper"&&c=="rock"||u=="scissors"&&c=="paper")?"Win":"Lose";
+}
+function reset(){r.innerText="";}
+</script>
+
+</body>
+</html>
