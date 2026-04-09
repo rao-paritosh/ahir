@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{background:#050505;display:flex;justify-content:center;align-items:center;height:100vh}
+.grid{display:grid;grid-template-columns:repeat(5,60px);gap:10px}
+.card{width:60px;height:60px;background:#111;color:white;display:flex;align-items:center;justify-content:center;border-radius:10px}
+.open{background:#00ffcc;color:black}
+</style>
+</head>
+
+<body>
+
+<div>
+<div class="grid" id="g"></div>
+<button onclick="location.reload()">⟳ Reset</button>
+</div>
+
+<script>
+let arr=[1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10].sort(()=>Math.random()-0.5);
+let f=null;
+
+arr.forEach(v=>{
+let d=document.createElement("div");
+d.className="card";
+
+d.onclick=()=>{
+if(d.classList.contains("open"))return;
+d.innerText=v;d.classList.add("open");
+
+if(!f)f=d;
+else{
+if(f.innerText!=d.innerText){
+setTimeout(()=>{f.innerText="";d.innerText="";f.classList.remove("open");d.classList.remove("open");f=null},500);
+}else f=null;
+}
+};
+
+g.appendChild(d);
+});
+</script>
+
+</body>
+</html>
